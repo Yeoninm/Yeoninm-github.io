@@ -321,6 +321,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Yeoninm-github.io/categories/西瓜书/" itemprop="url" rel="index">
+                    <span itemprop="name">西瓜书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -638,6 +660,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Yeoninm-github.io/categories/西瓜书/" itemprop="url" rel="index">
+                    <span itemprop="name">西瓜书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -667,8 +711,8 @@
       
         
           
-            <p> <a href="https://github.com/datawhalechina/pumpkin-book">Dadawhale南瓜书</a></p>
-<h2 id="第一章绪论"><a href="#第一章绪论" class="headerlink" title="第一章绪论"></a>第一章绪论</h2><h3 id="假设空间与版本空间"><a href="#假设空间与版本空间" class="headerlink" title="假设空间与版本空间"></a>假设空间与版本空间</h3><p>假设空间：监督学习（supervised learning）的任务是学习一个模型，使模型能够对任意给定的输入，对其相应的输出做出 一                   个好的预测。模型属于由输入空间到输出空间的映射的集合，这个集合就是假设空间(hypothesis space)。我们也可                   以将学习过程看作一个在所有假设组成的空间中进行搜索的过程，搜索目标是找到与训练集”匹配”的假设，即能够将                  训练集中的瓜判断正确的假设。假设的表示一旦确定，假设空间及其规模大小就确定了。</p>
+            <h2 id="第一章绪论"><a href="#第一章绪论" class="headerlink" title="第一章绪论"></a>第一章绪论</h2><p><a href="https://github.com/datawhalechina/pumpkin-book">Dadawhale南瓜书</a></p>
+<h3 id="假设空间与版本空间"><a href="#假设空间与版本空间" class="headerlink" title="假设空间与版本空间"></a>假设空间与版本空间</h3><p>假设空间：监督学习（supervised learning）的任务是学习一个模型，使模型能够对任意给定的输入，对其相应的输出做出 一                   个好的预测。模型属于由输入空间到输出空间的映射的集合，这个集合就是假设空间(hypothesis space)。我们也可                   以将学习过程看作一个在所有假设组成的空间中进行搜索的过程，搜索目标是找到与训练集”匹配”的假设，即能够将                  训练集中的瓜判断正确的假设。假设的表示一旦确定，假设空间及其规模大小就确定了。</p>
 <p>版本空间：与训练集一致的“假设集合”。</p>
 <h2 id="第三章线性模型"><a href="#第三章线性模型" class="headerlink" title="第三章线性模型"></a>第三章线性模型</h2><h3 id="线性回归与逻辑回归"><a href="#线性回归与逻辑回归" class="headerlink" title="线性回归与逻辑回归"></a>线性回归与逻辑回归</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">线性模型(linear model)试图学得一个通过属性的线性组合进行预测的函数，即&#123;% asset_img xxhg.jpg 说明 %&#125;</span><br><span class="line"></span><br><span class="line">一般用向量形式写成 即&#123;% asset_img xxhg2.jpg  %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练</span></span><br><span class="line">def standRegres(xArr,yArr):  </span><br><span class="line">    m,n = np.shape(xArr)</span><br><span class="line">    xMat = np.mat(np.ones((m, n+1))) <span class="comment"># 加第一列设为1，为计算截距</span></span><br><span class="line">    x = np.mat(xArr)</span><br><span class="line">    xMat[:,1:n+1] = x[:,0:n];</span><br><span class="line">    yMat = np.mat(yArr).T  </span><br><span class="line">    xTx = xMat.T*xMat  </span><br><span class="line">    <span class="keyword">if</span> np.linalg.det(xTx) == 0.0:  </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"This matrix is sigular, cannot do inverse"</span>) <span class="comment">#行列式的值为0，无逆矩阵</span></span><br><span class="line">        <span class="built_in">return</span>  </span><br><span class="line">    ws = xTx.I*(xMat.T*yMat)  </span><br><span class="line">    <span class="built_in">return</span> ws  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 预测</span></span><br><span class="line">def predict(xArr, ws):</span><br><span class="line">    m,n = np.shape(xArr)</span><br><span class="line">    xMat = np.mat(np.ones((m, n+1))) <span class="comment"># 加第一列设为1, 为计算截距</span></span><br><span class="line">    x = np.mat(xArr)</span><br><span class="line">    xMat[:,1:n+1] = x[:,0:n];</span><br><span class="line">    <span class="built_in">return</span> xMat*ws</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    x = [[1], [2], [3], [4]]</span><br><span class="line">    y = [4.1, 5.9, 8.1, 10.1]</span><br><span class="line">    ws = standRegres(x,y)</span><br><span class="line">    <span class="built_in">print</span>(ws)</span><br><span class="line">    <span class="built_in">print</span>(predict([[5]], ws))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 画图</span></span><br><span class="line">    plt.scatter(x, y, s=20)</span><br><span class="line">    yHat = predict(x, ws)</span><br><span class="line">    plt.plot(x, yHat, linewidth=2.0, color=<span class="string">'red'</span>) </span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
 <p>线性回归(linear regression)是试图学得一个线性模型以尽可能准确地预测实值的输出标记。线性回归一般被用在回归问题上，但是对线性回归做出简单的变换，即可用于进行二分类问题。此时的线性回归模型也就变成了我们熟悉的逻辑斯蒂回归(logistic regression)。而一个多分类问题又可以分解成多个二分类问题，于是我们同样可以将逻辑斯蒂回归模型用于解决多分类问题上。以下将顺序介绍线性回归，逻辑斯蒂回归，以及多分类问题如何分解成多个二分类问题</p>
@@ -788,6 +832,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Yeoninm-github.io/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Yeoninm-github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/Yeoninm-github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/Yeoninm-github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Yeoninm-github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Yeoninm-github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Yeoninm-github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/Yeoninm-github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="title: pytorch学习categories:  DataWhale pytorch  假期重新学习一下pytorch(2020-2-14) 1.线性回归模型使用pytorch的简洁实现1234567import torchfrom torch import nnimport numpy as nptorch.manual_seed(1)print(torch.__version__)to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="�չ�һ��">
+<meta property="og:url" content="https://github.com/Yeoninm/Yeoninm-github.io/2020/02/14/pytorch_study1/index.html">
+<meta property="og:site_name" content="�չ�һ��">
+<meta property="og:description" content="title: pytorch学习categories:  DataWhale pytorch  假期重新学习一下pytorch(2020-2-14) 1.线性回归模型使用pytorch的简洁实现1234567import torchfrom torch import nnimport numpy as nptorch.manual_seed(1)print(torch.__version__)to">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-14T01:28:51.746Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="�չ�һ��">
+<meta name="twitter:description" content="title: pytorch学习categories:  DataWhale pytorch  假期重新学习一下pytorch(2020-2-14) 1.线性回归模型使用pytorch的简洁实现1234567import torchfrom torch import nnimport numpy as nptorch.manual_seed(1)print(torch.__version__)to">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Yeoninm-github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/Yeoninm/Yeoninm-github.io/2020/02/14/pytorch_study1/">
+
+
+
+
+
+  <title> | �չ�һ��</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Yeoninm-github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">�չ�һ��</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Yeoninm-github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-��ҳ"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/Yeoninm-github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/Yeoninm-github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/Yeoninm-github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Yeoninm-github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/Yeoninm-github.io/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/Yeoninm-github.io/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Yeoninm/Yeoninm-github.io/Yeoninm-github.io/2020/02/14/pytorch_study1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiMin Yan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/Yeoninm-github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="�չ�һ��">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-14T10:27:18+09:00">
+                2020-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>title: pytorch学习<br>categories:</p>
+<ul>
+<li>DataWhale</li>
+<li>pytorch</li>
+</ul>
+<p>假期重新学习一下pytorch(2020-2-14)</p>
+<h3 id="1-线性回归模型使用pytorch的简洁实现"><a href="#1-线性回归模型使用pytorch的简洁实现" class="headerlink" title="1.线性回归模型使用pytorch的简洁实现"></a>1.线性回归模型使用pytorch的简洁实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">torch.manual_seed(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">print(torch.__version__)</span><br><span class="line">torch.set_default_tensor_type(<span class="string">'torch.FloatTensor'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0.4.1
+</code></pre><p>接下来自己生成数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">num_inputs = <span class="number">2</span></span><br><span class="line">num_examples = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">true_w = [<span class="number">2</span>, <span class="number">-3.4</span>]</span><br><span class="line">true_b = <span class="number">4.2</span></span><br><span class="line"></span><br><span class="line">features = torch.tensor(np.random.normal(<span class="number">0</span>, <span class="number">1</span>, (num_examples, num_inputs)), dtype=torch.float)</span><br><span class="line">labels = true_w[<span class="number">0</span>] * features[:, <span class="number">0</span>] + true_w[<span class="number">1</span>] * features[:, <span class="number">1</span>] + true_b</span><br><span class="line">labels += torch.tensor(np.random.normal(<span class="number">0</span>, <span class="number">0.01</span>, size=labels.size()), dtype=torch.float)</span><br></pre></td></tr></table></figure>
+<p>看一下刚刚生成的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># combine featues and labels of dataset</span></span><br><span class="line">dataset = Data.TensorDataset(features, labels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># put dataset into DataLoader</span></span><br><span class="line">data_iter = Data.DataLoader(</span><br><span class="line">    dataset=dataset,            <span class="comment"># torch TensorDataset format</span></span><br><span class="line">    batch_size=batch_size,      <span class="comment"># mini batch size</span></span><br><span class="line">    shuffle=<span class="literal">True</span>,               <span class="comment"># whether shuffle the data or not</span></span><br><span class="line">    num_workers=<span class="number">2</span>,              <span class="comment"># read data in multithreading</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> X, y <span class="keyword">in</span> data_iter:</span><br><span class="line">    print(X, <span class="string">'\n'</span>, y)</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[-0.2254, -0.2279],
+        [ 1.3783, -0.7061],
+        [ 0.9515, -0.9888],
+        [-1.7960,  1.5412],
+        [ 0.4983,  0.4440],
+        [ 2.0015,  1.4920],
+        [-1.0955,  0.4222],
+        [-0.3802,  0.3615],
+        [ 1.0498, -2.0991],
+        [-0.4594, -0.3109]]) 
+ tensor([ 4.5286,  9.3626,  9.4515, -4.6416,  3.6817,  3.1310,  0.5764,  2.2071,
+        13.4359,  4.3299])
+</code></pre><p>数据有了直接定义模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearNet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n_feature)</span>:</span></span><br><span class="line">        super(LinearNet, self).__init__()      <span class="comment"># call father function to init </span></span><br><span class="line">        self.linear = nn.Linear(n_feature, <span class="number">1</span>)  <span class="comment"># function prototype: `torch.nn.Linear(in_features, out_features, bias=True)`</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        y = self.linear(x)</span><br><span class="line">        <span class="keyword">return</span> y</span><br><span class="line">    </span><br><span class="line">net = LinearNet(num_inputs)</span><br><span class="line">print(net)</span><br></pre></td></tr></table></figure>
+<pre><code>LinearNet(
+  (linear): Linear(in_features=2, out_features=1, bias=True)
+)
+</code></pre><p>另附如下三种定义模型方式（pytorch的模型定义有很多种方式，每种方式都有其优缺点）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ways to init a multilayer network</span></span><br><span class="line"><span class="comment"># method one</span></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">    nn.Linear(num_inputs, <span class="number">1</span>)</span><br><span class="line">    <span class="comment"># other layers can be added here</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="comment"># method two</span></span><br><span class="line">net = nn.Sequential()</span><br><span class="line">net.add_module(<span class="string">'linear'</span>, nn.Linear(num_inputs, <span class="number">1</span>))</span><br><span class="line"><span class="comment"># net.add_module ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># method three</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">net = nn.Sequential(OrderedDict([</span><br><span class="line">          (<span class="string">'linear'</span>, nn.Linear(num_inputs, <span class="number">1</span>))</span><br><span class="line">          <span class="comment"># ......</span></span><br><span class="line">        ]))</span><br><span class="line"></span><br><span class="line">print(net)</span><br><span class="line">print(net[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>Sequential(
+  (linear): Linear(in_features=2, out_features=1, bias=True)
+)
+Linear(in_features=2, out_features=1, bias=True)
+</code></pre><p>再一个就是初始化模型参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.nn <span class="keyword">import</span> init</span><br><span class="line"></span><br><span class="line">init.normal_(net[<span class="number">0</span>].weight, mean=<span class="number">0.0</span>, std=<span class="number">0.01</span>)</span><br><span class="line">init.constant_(net[<span class="number">0</span>].bias, val=<span class="number">0.0</span>)  <span class="comment"># or you can use `net[0].bias.data.fill_(0)` to modify it directly</span></span><br></pre></td></tr></table></figure>
+<pre><code>Parameter containing:
+tensor([0.], requires_grad=True)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> param <span class="keyword">in</span> net.parameters():</span><br><span class="line">    print(param)</span><br></pre></td></tr></table></figure>
+<pre><code>Parameter containing:
+tensor([[-0.0142, -0.0161]], requires_grad=True)
+Parameter containing:
+tensor([0.], requires_grad=True)
+</code></pre><p>定义损失函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这里直接使用MSE就OK</span></span><br><span class="line">loss = nn.MSELoss()    <span class="comment"># nn built-in squared loss function</span></span><br><span class="line">                       <span class="comment"># function prototype: `torch.nn.MSELoss(size_average=None, reduce=None, reduction='mean')`</span></span><br></pre></td></tr></table></figure>
+<p>定义优化函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line">optimizer = optim.SGD(net.parameters(), lr=<span class="number">0.03</span>)   <span class="comment"># built-in random gradient descent function</span></span><br><span class="line">print(optimizer)  <span class="comment"># function prototype: `torch.optim.SGD(params, lr=, momentum=0, dampening=0, weight_decay=0, nesterov=False)`</span></span><br></pre></td></tr></table></figure>
+<pre><code>SGD (
+Parameter Group 0
+    dampening: 0
+    lr: 0.03
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+</code></pre><p>ok,开始训练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">num_epochs = <span class="number">3</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span>, num_epochs + <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> X, y <span class="keyword">in</span> data_iter:</span><br><span class="line">        output = net(X)</span><br><span class="line">        l = loss(output, y.view(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">        optimizer.zero_grad() <span class="comment"># reset gradient, equal to net.zero_grad()</span></span><br><span class="line">        l.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">    print(<span class="string">'epoch %d, loss: %f'</span> % (epoch, l.item()))</span><br></pre></td></tr></table></figure>
+<pre><code>epoch 1, loss: 0.000166
+epoch 2, loss: 0.000072
+epoch 3, loss: 0.000064
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># result comparision</span></span><br><span class="line">dense = net[<span class="number">0</span>]</span><br><span class="line">print(true_w, dense.weight.data)</span><br><span class="line">print(true_b, dense.bias.data)</span><br></pre></td></tr></table></figure>
+<pre><code>[2, -3.4] tensor([[ 2.0004, -3.3991]])
+4.2 tensor([4.1994])
+</code></pre><p>完成！pytroch实现最基础的线性模型</p>
+<h4 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Cross-Entropy"><a href="#Cross-Entropy" class="headerlink" title="Cross Entropy"></a>Cross Entropy</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Yeoninm-github.io/2019/05/29/lesson1-week1/" rel="next" title="lesson1-week1">
+                <i class="fa fa-chevron-left"></i> lesson1-week1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">LiMin Yan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Yeoninm-github.io/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Yeoninm-github.io/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Yeoninm-github.io/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-线性回归模型使用pytorch的简洁实现"><span class="nav-number">1.</span> <span class="nav-text">1.线性回归模型使用pytorch的简洁实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Softmax"><span class="nav-number">1.1.</span> <span class="nav-text">Softmax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cross-Entropy"><span class="nav-number">1.2.</span> <span class="nav-text">Cross Entropy</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiMin Yan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Yeoninm-github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Yeoninm-github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Yeoninm-github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Yeoninm-github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Yeoninm-github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Yeoninm-github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Yeoninm-github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Yeoninm-github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/Yeoninm-github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/Yeoninm-github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/Yeoninm-github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/Yeoninm-github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Yeoninm-github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
